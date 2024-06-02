@@ -2,32 +2,30 @@ use num;
 
 use super::average_trait::AverageTrait;
 
-
 #[derive(Default)]
 pub struct Average<ValueT>
 where
-    ValueT: num::Float
+    ValueT: num::Float,
 {
     count: usize,
     sum: ValueT,
 }
 
-
 impl<ValueT> Average<ValueT>
 where
-    ValueT: num::Float
+    ValueT: num::Float,
 {
-
     pub fn new() -> Self {
-        Average {count: 0, sum: ValueT::zero() }
+        Average {
+            count: 0,
+            sum: ValueT::zero(),
+        }
     }
-
 }
-
 
 impl<ValueT> AverageTrait<ValueT> for Average<ValueT>
 where
-    ValueT: num::Float
+    ValueT: num::Float,
 {
     fn count(&self) -> usize {
         self.count
@@ -48,17 +46,14 @@ where
     }
 }
 
-
-
 #[cfg(test)]
 mod test {
 
-    use crate::average::AverageTrait;
     use super::Average;
+    use crate::average::AverageTrait;
 
     #[test]
     fn test() {
-
         let mut a: Average<f64> = Average::new();
 
         assert!(a.count() == 0);
@@ -81,6 +76,5 @@ mod test {
 
         assert!(a.count() == 2);
         assert!((a.value() - 5.0 / 2.0).abs() <= 1e-10);
-
     }
 }

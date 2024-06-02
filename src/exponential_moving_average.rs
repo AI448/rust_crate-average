@@ -2,39 +2,37 @@ use num;
 
 use super::average_trait::AverageTrait;
 
-
 pub struct ExponentialMovingAverage<ValueT>
 where
-    ValueT: num::Float
+    ValueT: num::Float,
 {
     time_constant: usize,
     count: usize,
     mean: ValueT,
 }
 
-
 impl<ValueT> ExponentialMovingAverage<ValueT>
 where
-    ValueT: num::Float
+    ValueT: num::Float,
 {
-
     pub fn new(time_constant: usize) -> Self {
         assert!(time_constant > 0);
-        ExponentialMovingAverage { time_constant: time_constant, count: 0, mean: ValueT::zero() }
+        ExponentialMovingAverage {
+            time_constant: time_constant,
+            count: 0,
+            mean: ValueT::zero(),
+        }
     }
 
     pub fn time_constant(&self) -> usize {
         self.time_constant
     }
-
 }
-
 
 impl<ValueT> AverageTrait<ValueT> for ExponentialMovingAverage<ValueT>
 where
-    ValueT: num::Float
+    ValueT: num::Float,
 {
-
     fn count(&self) -> usize {
         self.count
     }
@@ -57,9 +55,7 @@ where
         self.count = 0;
         self.mean = ValueT::zero();
     }
-
 }
-
 
 #[cfg(test)]
 mod test {
@@ -69,8 +65,6 @@ mod test {
 
     #[test]
     fn test() {
-
-
         let mut a: ExponentialMovingAverage<f64> = ExponentialMovingAverage::new(3);
 
         assert!(a.count() == 0);
@@ -95,6 +89,5 @@ mod test {
         assert!(a.count() == 4);
         assert!(a.value() > 4.0 / 4.0);
         assert!(a.value() < 16.0 / 4.0);
-
     }
 }

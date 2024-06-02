@@ -2,10 +2,9 @@ use num;
 
 use super::average_trait::AverageTrait;
 
-
 pub struct MovingAverage<ValueT>
 where
-    ValueT: num::Float
+    ValueT: num::Float,
 {
     ring_buffer: Vec<ValueT>,
     first: usize,
@@ -13,10 +12,9 @@ where
     sum: ValueT,
 }
 
-
 impl<ValueT> MovingAverage<ValueT>
 where
-    ValueT: num::Float
+    ValueT: num::Float,
 {
     pub fn new(time_constant: usize) -> Self {
         MovingAverage {
@@ -32,12 +30,10 @@ where
     }
 }
 
-
 impl<ValueT> AverageTrait<ValueT> for MovingAverage<ValueT>
 where
-    ValueT: num::Float
+    ValueT: num::Float,
 {
-
     fn count(&self) -> usize {
         self.count
     }
@@ -63,10 +59,7 @@ where
         self.count = 0;
         self.sum = ValueT::zero();
     }
-
 }
-
-
 
 #[cfg(test)]
 mod test {
@@ -76,7 +69,6 @@ mod test {
 
     #[test]
     fn test() {
-
         let mut a: MovingAverage<f64> = MovingAverage::new(3);
 
         assert!(a.time_constant() == 3);
@@ -101,6 +93,5 @@ mod test {
 
         assert!(a.count() == 3);
         assert!((a.value() - 9.0 / 3.0).abs() <= 1e-10);
-
     }
 }
