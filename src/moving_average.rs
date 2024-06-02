@@ -75,8 +75,8 @@ mod test {
         assert!(a.count() == 0);
         assert!(a.value().is_nan());
 
-        a.add(2f64);
-        a.add(3f64);
+        a.add(2.0);
+        a.add(3.0);
 
         assert!(a.count() == 2);
         assert!((a.value() - 5.0 / 2.0).abs() <= 1e-10);
@@ -86,10 +86,10 @@ mod test {
         assert!(a.count() == 0);
         assert!(a.value().is_nan());
 
-        a.add(1f64);
-        a.add(2f64);
-        a.add(3f64);
-        a.add(4f64);
+        a.add(1.0);
+        a.add(2.0);
+        a.add(3.0);
+        a.add(4.0);
 
         assert!(a.count() == 3);
         assert!((a.value() - 9.0 / 3.0).abs() <= 1e-10);
